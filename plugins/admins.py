@@ -17,7 +17,7 @@ from Client import callsmusic
 async def pause(_, message: Message):
     callsmusic.pytgcalls.pause_stream(message.chat.id)
     await message.reply_photo(
-                             photo="https://telegra.ph/file/dd6814e241bfc4c0255cd.jpg", 
+                             photo="https://telegra.ph/file/736f1fa758604d7bd647e.jpg", 
                              caption="**⏸ Music Paused.\n use /resume**"
     )
 
@@ -28,7 +28,7 @@ async def pause(_, message: Message):
 async def resume(_, message: Message):
     callsmusic.pytgcalls.resume_stream(message.chat.id)
     await message.reply_photo(
-                             photo="https://telegra.ph/file/d0f2dd5b7519bb5444139.jpg", 
+                             photo="https://telegra.ph/file/3abbc797e790ea592c09e.jpg", 
                              caption="**▶️ Music Resumed.\n use /pause**"
     )
 
@@ -44,7 +44,7 @@ async def stop(_, message: Message):
 
     callsmusic.pytgcalls.leave_group_call(message.chat.id)
     await message.reply_photo(
-                             photo="https://telegra.ph/file/8d22aa7d53b6acb9a125e.jpg", 
+                             photo="https://telegra.ph/file/91fd24d28f504704e3898.jpg", 
                              caption="❌ **Stopped Streaming\n use /play for new song**"
     )
 
@@ -73,7 +73,7 @@ async def skip(_, message: Message):
     if not qeue:
         return
     await message.reply_photo(
-                             photo="https://telegra.ph/file/96129f4d0e984d2432e55.jpg", 
+                             photo="https://telegra.ph/file/a93dcde4e16833cae4166.jpg", 
                              caption="f- Skipped **{skip[0]}**\n- Now Playing **{qeue[0][0]}**"
     )
 
@@ -91,6 +91,6 @@ async def admincache(client, message: Message):
     )
 
     await message.reply_photo(
-                              photo="https://telegra.ph/file/d881ea9de7620ecc36d08.jpg",
+                              photo="https://telegra.ph/file/9ed109ac540d36fbd44e0.jpg",
                               caption="**Reloaded\n Admin List updated**"
     )
