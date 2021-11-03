@@ -24,7 +24,7 @@ async def addchannel(client, message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "@DeCode_Assistant"
+        user.first_name = "@FirstMonarch"
 
     try:
         await USER.join_chat(invitelink)
@@ -64,7 +64,7 @@ async def bye(client, message):
 
     left = 0
     failed = 0
-    lol = await message.reply("**Asisten Meninggalkan semua obrolan**")
+    lol = await message.reply("**Userbot (asssistant) left all groups Contact Support @AnimeFunchat**")
     async for dialog in USER.iter_dialogs():
         try:
             await USER.leave_chat(dialog.chat.id)
