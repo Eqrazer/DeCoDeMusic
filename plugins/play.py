@@ -76,11 +76,11 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
-                f = await aiofiles.open("background.png", mode="wb")
+                f = await aiofiles.open("Cha.png", mode="wb")
                 await f.write(await resp.read())
                 await f.close()
 
-    image1 = Image.open("./background.png")
+    image1 = Image.open("./Cha.png")
     image2 = Image.open("etc/foreground.png")
     image3 = changeImageSize(1280, 720, image1)
     image4 = changeImageSize(1280, 720, image2)
@@ -89,7 +89,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     Image.alpha_composite(image5, image6).save("temp.png")
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("etc/font.otf", 32)
+    font = ImageFont.truetype("etc/font.otf", 42)
     draw.text((190, 550), f"Title: {title}", (255, 255, 255), font=font)
     draw.text((190, 590), f"Duration: {duration}", (255, 255, 255), font=font)
     draw.text((190, 630), f"Views: {views}", (255, 255, 255), font=font)
@@ -105,7 +105,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
 
 @Client.on_message(
-    command("Maintainmode") & ~filters.edited & ~filters.bot & ~filters.private
+    command("mplayer") & ~filters.edited & ~filters.bot & ~filters.private
 )
 @authorized_users_only
 async def hfmm(_, message):
@@ -116,7 +116,7 @@ async def hfmm(_, message):
         return
     if len(message.command) != 2:
         await message.reply_text(
-            "I only recognize `/Maintainmode on` and /Maintainmode `off only`"
+            "I only recognize `/mplayer on` and /mplayer `off only`"
         )
         return
     status = message.text.split(None, 1)[1]
@@ -124,22 +124,22 @@ async def hfmm(_, message):
     if status in ["OFF", "Off", "off"]:
         lel = await message.reply("`Processing...`")
         if message.chat.id not in DISABLED_GROUPS:
-            await lel.edit("This Chat is not In maintainence mode")
+            await lel.edit("This Chat is not In No-Play mode")
             return
         DISABLED_GROUPS.remove(message.chat.id)
         await lel.edit(
-            f"Maintainence Mode disabled In **{message.chat.title}** Chat"
+            f"No-Play Mode disabled In **{message.chat.title}** Chat"
         )
 
     elif status in ["ON", "On", "on"]:
         lel = await message.reply("`Processing...`")
 
         if message.chat.id in DISABLED_GROUPS:
-            await lel.edit("maintainence mode  already active in This Chat")
+            await lel.edit("No-play mode  already active in This Chat")
             return
         DISABLED_GROUPS.append(message.chat.id)
         await lel.edit(
-            f"Maintainence mode is now enabled in **{message.chat.title}** Chat"
+            f"No-Play mode is now enabled in **{message.chat.title}** Chat"
         )
     else:
         await message.reply_text(
@@ -164,7 +164,7 @@ async def m_cb(b, cb):
 
 # play
 @Client.on_message(
-    command("play")
+    command("ytt")
     & filters.group
     & ~filters.edited
     & ~filters.forwarded
@@ -174,7 +174,7 @@ async def play(_, message: Message):
     global que
     global useer
     if message.chat.id in DISABLED_GROUPS:
-        await message.reply("**maintainence mode is on, ask admin to disable it!**")
+        await message.reply("**No-play mode is on, ask admin to disable it!**")
         return
     lel = await message.reply("🔄 **Processing...**")
 
@@ -184,7 +184,7 @@ async def play(_, message: Message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "@DeCode_Assistant"
+        user.first_name = "@FirstMonarch"
     usar = user
     wew = usar.id
     try:
@@ -251,8 +251,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🚨 Support", url="t.me/decodesupport"),
-                    InlineKeyboardButton("📡 Updates", url="t.me/DeeCodebots"),
+                    InlineKeyboardButton(" Anime Chat", url="t.me/animefunchat"),
+                    InlineKeyboardButton("� Our Network", url="t.me/aicradnetwork"),
                 ],
                 [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
             ]
@@ -289,8 +289,8 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("🚨 Support", url="t.me/decodesupport"),
-                        InlineKeyboardButton("📡 Updates", url="t.me/DeeCodebots"),
+                    InlineKeyboardButton(" Anime Chat", url="t.me/animefunchat"),
+                    InlineKeyboardButton("� Our Network", url="t.me/aicradnetwork"),
                     ],
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
@@ -298,7 +298,7 @@ async def play(_, message: Message):
 
         except Exception as e:
             title = "NaN"
-            thumb_name = "https://telegra.ph/file/a7adee6cf365d74734c5d.png"
+            thumb_name = "https://telegra.ph/file/1daa11f5c22f9bac4d60a.jpg"
             duration = "NaN"
             views = "NaN"
             keyboard = InlineKeyboardMarkup(
@@ -316,7 +316,7 @@ async def play(_, message: Message):
     else:
         if len(message.command) < 2:
             return await lel.edit(
-                "🧐 **Song not found! Try searching with the correct title\nExample » /play In The End\n\nChannel : @DeCodeMusicBot**"
+                "🧐 **Song not found! Try searching with the correct title\nExample » /play In The End\n\nAmimeChat : @AnimefunChat**"
             )
         await lel.edit("🔎 **Finding the song...**")
         query = message.text.split(None, 1)[1]
@@ -352,8 +352,8 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🚨 Support", url="t.me/decodesupport"),
-                    InlineKeyboardButton("📡 Updates", url="t.me/DeeCodebots"),
+                    InlineKeyboardButton(" Anime Chat", url="t.me/animefunchat"),
+                    InlineKeyboardButton("� Our Network", url="t.me/aicradnetwork"),
                 ],
                 [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
             ]
