@@ -6,12 +6,12 @@ from helpers.decorators import sudo_users_only
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, Chat, CallbackQuery
 
 
-@Client.on_message(command(["restart", "reboot"]) & ~filters.edited)
+@Client.on_message(command(["shadow_summmon", "arise"]) & ~filters.edited)
 @sudo_users_only
 @check_heroku
 async def gib_restart(client, message, hap):
     msg_ = await message.reply_photo(
-                                     photo="https://te.legra.ph/file/f412a0a94c1da161a7013.jpg", 
+                                     photo="https://telegra.ph/file/d1fda03ea9d798f46888a.jpg", 
                                      caption="**Restaring**\n**Please Wait...**"
    )
     hap.restart()
